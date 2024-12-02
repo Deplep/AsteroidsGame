@@ -1,4 +1,12 @@
-class Star //note that this class does NOT extend Floater
-{
-  //your code here
+class Stars{
+  private int xPos;
+  private int yPos;
+  public Stars(){
+    xPos = (int)(Math.random()*800);
+    yPos = (int)(Math.random()*800);
+  }
+  public void showS(){
+    fill(255);
+    ellipse(xPos, yPos, 8, 8);
+  }
 }
