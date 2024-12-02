@@ -63,6 +63,7 @@ class Floater //Do NOT modify the Floater class! Make changes in the Spaceship c
     
     //draw the polygon
     beginShape();
+    fill(255);
     for (int nI = 0; nI < corners; nI++)
     {
       vertex(xCorners[nI], yCorners[nI]);
