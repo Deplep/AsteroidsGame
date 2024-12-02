@@ -21,7 +21,7 @@ public void draw() {
     lasers[i].show();
     lasers[i].move();
   }
-  ship.checkRedColor();
+  //ship.checkRedColor();
   ship.show();
   ship.move();
 }
