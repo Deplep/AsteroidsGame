@@ -26,6 +26,21 @@ public void draw() {
   ship.move();
 }
 
+public void keyPressed() {
+  if (key == CODED) {
+    if (keyCode == UP) {
+      ship.accelerate(0.5); // Move forward
+    } else if (keyCode == DOWN) {
+      ship.accelerate(-0.5); // Move backward
+    } else if (keyCode == LEFT) {
+      ship.setMyPointDirection(-10); // Rotate counterclockwise
+    } else if (keyCode == RIGHT) {
+      ship.setMyPointDirection(10); // Rotate clockwise
+    } else if (keyCode == SHIFT) {
+      ship.hyperspace();
+    }
+  }
+}
 
 class Lasers{
   private int xPos, yPos, xSpeed, ySpeed;
