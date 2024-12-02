@@ -26,3 +26,32 @@ public void draw() {
   ship.move();
 }
 
+
+class Lasers{
+  private int xPos, yPos, xSpeed, ySpeed;
+  public Lasers(){
+    xPos = (int)(Math.random()*800);
+    yPos = (int)(Math.random()*800);
+    xSpeed = (int)(Math.random()*5 - 2.5);
+    ySpeed = (int)(Math.random()*5 - 2.5);
+  }  
+  public void show(){
+    fill(255, 0, 0);
+    rect(xPos, yPos, 10, 10);
+  }
+  public void move(){
+    xPos += xSpeed;
+    yPos += ySpeed;
+        //wrap around screen    
+    if (xPos > width){    
+      xPos = 0;
+    } else if (xPos < 0) {    
+      xPos = width;
+    }    
+    if (yPos > height) {    
+      yPos = 0;
+    } else if (yPos < 0){    
+      yPos = height;
+    }
+  }
+}
