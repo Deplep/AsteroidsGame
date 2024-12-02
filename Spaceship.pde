@@ -17,7 +17,7 @@ class Spaceship extends Floater{
     xCorners[2] = -8;
     yCorners[2] = 8;
   }
-  
+ 
   //public void setXspeed(double x) {
     //myXspeed += x;
   //}
@@ -33,4 +33,5 @@ class Spaceship extends Floater{
     myCenterX = (int)(Math.random()*500);
     myCenterY = (int)(Math.random()*500);
   }
-}
+
+
