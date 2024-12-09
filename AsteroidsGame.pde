@@ -1,6 +1,8 @@
 Spaceship ship;
 Stars [] stars = new Stars[140];
-Lasers [] lasers = new Lasers[70];
+Lasers [] lasers = new Lasers[50];
+ArrayList <Asteroid> myList = new ArrayList <Asteroid>();
+//Asteroid asteroids = new Asteroid();
 
 public void setup() {
   size(800, 800);
@@ -11,6 +13,9 @@ public void setup() {
   for(int i = 0; i < lasers.length; i += 1){
     lasers[i] = new Lasers();
   }
+  for(int i = 0; i < 50; i += 1){
+    myList.add(new Asteroid());
+  }
 }
 public void draw() {
   background(0);
@@ -20,6 +25,18 @@ public void draw() {
   for(int i = 0; i < lasers.length; i += 1){
     lasers[i].show();
     lasers[i].move();
+  }
+  for(int i = 0; i < myList.size(); i += 1){
+    //Asteroid asteroidd = myList.get(i);
+    myList.get(i).show();
+    myList.get(i).move();
+    float distance = dist((float)ship.getX(), (float)ship.getY(), 
+                          (float)myList.get(i).getX(), (float)myList.get(i).getY());
+    if (distance < 10){
+      myList.remove(i);
+      i--;
+    }
+    //asteroidd.show();
   }
   ship.checkRedColor();
   ship.show();
