@@ -57,5 +57,11 @@ class Spaceship extends Floater{
       //System.out.println("The pixel is not red.");
     }
   }
+  public double getX(){
+    return myCenterX;
+  }
+  public double getY(){
+    return myCenterY;
+  }
 }
 
