@@ -26,8 +26,8 @@ public void draw() {
     lasers[i].show();
     lasers[i].move();
   }
-  for(int i = 0; i < myList.size(); i += 1){
-  //for(int i = myList.size-1; i > 0; i--){
+  //for(int i = 0; i < myList.size(); i += 1){
+  for(int i = myList.size-1; i > 0; i--){
     //Asteroid asteroidd = myList.get(i);
     myList.get(i).show();
     myList.get(i).move();
@@ -35,7 +35,7 @@ public void draw() {
                           (float)myList.get(i).getX(), (float)myList.get(i).getY());
     if (distance < 10){
       myList.remove(i);
-      i--;
+      //i--;
     }
     //asteroidd.show();
   }
