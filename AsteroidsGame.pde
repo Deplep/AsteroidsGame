@@ -1,4 +1,4 @@
-0Spaceship ship;
+Spaceship ship;
 Stars [] stars = new Stars[140];
 Lasers [] lasers = new Lasers[50];
 ArrayList <Asteroid> myList = new ArrayList <Asteroid>();
