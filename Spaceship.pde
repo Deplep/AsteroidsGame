@@ -51,7 +51,7 @@ class Spaceship extends Floater{
     if (redValue == 255 && greenValue == 0 && blueValue == 0 && alphaValue == 255) {
       fill(255);
       textSize(20);
-      //text("You died!! D:", 365, 400);
+      text("You died!! D:", 365, 400);
       //ship = null;
       gameOver = true;
     } else {
