@@ -1,8 +1,9 @@
 Spaceship ship;
 Stars [] stars = new Stars[140];
-Lasers [] lasers = new Lasers[50];
+Lasers [] lasers = new Lasers[20];
 ArrayList <Asteroid> myList = new ArrayList <Asteroid>();
-//Asteroid asteroids = new Asteroid();
+ArrayList <Bullet> bullets = new ArrayList <Bullet>();
+boolean gameOver = false;
 
 public void setup() {
   size(800, 800);
@@ -13,12 +14,18 @@ public void setup() {
   for(int i = 0; i < lasers.length; i += 1){
     lasers[i] = new Lasers();
   }
-  for(int i = 0; i < 50; i += 1){
+  for(int i = 0; i < 40; i += 1){
     myList.add(new Asteroid());
   }
+  //for(int i = 0; i < 50; i += 1){
+    //bullets.add(new Bullet(ship));
+  //}
 }
 public void draw() {
   background(0);
+  if (gameOver == true){
+    ship = null;
+  }
   for(int i = 0; i < stars.length; i += 1){
     stars[i].showS();
   }
@@ -27,8 +34,6 @@ public void draw() {
     lasers[i].move();
   }
   for(int i = 0; i < myList.size(); i += 1){
-  //for(int i = myList.size-1; i > 0; i--){
-    //Asteroid asteroidd = myList.get(i);
     myList.get(i).show();
     myList.get(i).move();
     float distance = dist((float)ship.getX(), (float)ship.getY(), 
@@ -37,7 +42,25 @@ public void draw() {
       myList.remove(i);
       i--;
     }
-    //asteroidd.show();
+  }
+  for(int i = 0; i < bullets.size(); i += 1){
+    bullets.get(i).show();
+    bullets.get(i).move();
+  }
+    for (int i = 0; i < bullets.size(); i++) {
+    Bullet b = bullets.get(i); // Get the current bullet
+    
+    for (int j = 0; j < myList.size(); j++) {
+        Asteroid a = myList.get(j); // Get the current asteroid
+        float distance = dist((float)b.getX(), (float)b.getY(), 
+                              (float)a.getX(), (float)a.getY());
+    if (distance < 10){
+      bullets.remove(i);
+      myList.remove(j);
+      i--;
+      break;
+    }
+    }
   }
   ship.checkRedColor();
   ship.show();
@@ -48,14 +71,35 @@ public void keyPressed() {
   if (key == CODED) {
     if (keyCode == UP) {
       ship.accelerate(0.5); // Move forward
+      for(int i = 0; i < bullets.size(); i += 1){
+        bullets.get(i).accelerate(0.5);
+      }
+      
     } else if (keyCode == DOWN) {
       ship.accelerate(-0.5); // Move backward
+      for(int i = 0; i < bullets.size(); i += 1){
+        bullets.get(i).accelerate(-0.5);
+      }
+      
     } else if (keyCode == LEFT) {
       ship.setMyPointDirection(-10); // Rotate counterclockwise
+      for(int i = 0; i < bullets.size(); i += 1){
+        bullets.get(i).setMyPointDirection(-10);
+      }
+      
     } else if (keyCode == RIGHT) {
       ship.setMyPointDirection(10); // Rotate clockwise
+      for(int i = 0; i < bullets.size(); i += 1){
+        bullets.get(i).setMyPointDirection(10);
+      }
+      
     } else if (keyCode == SHIFT) {
       ship.hyperspace();
+      
+    } else if (keyCode == CONTROL) {
+        Bullet newBullet = new Bullet(ship); // Create a bullet at the ship's current position/direction
+        bullets.add(newBullet);              // Add it to the list
+        newBullet.accelerate(6.0);
     }
   }
 }
@@ -71,6 +115,7 @@ class Lasers{
   public void show(){
     fill(255, 0, 0);
     rect(xPos, yPos, 10, 10);
+    fill(255);
   }
   public void move(){
     xPos += xSpeed;
