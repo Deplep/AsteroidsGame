@@ -53,7 +53,7 @@ class Spaceship extends Floater{
       textSize(20);
       //text("You died!! D:", 365, 400);
       //ship = null;
-      gameOver == true;
+      gameOver = true;
     } else {
       //System.out.println("The pixel is not red.");
     }
@@ -64,5 +64,13 @@ class Spaceship extends Floater{
   public double getY(){
     return myCenterY;
   }
+  public double getXspeed(){
+    return myXspeed;
+  }
+  public double getYspeed(){
+    return myYspeed;
+  }
+  public double getMyPointDirection(){
+    return myPointDirection;
+  }
 }
-
